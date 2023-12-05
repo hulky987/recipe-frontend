@@ -1,0 +1,28 @@
+name: Lint Code
+
+on:
+  push:
+    branches:
+      - feature/adding-github-actions-worklflow
+  pull_request:
+    branches:
+      - feature/adding-github-actions-worklflow
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 14
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Run ESLint
+        run: npm run lint
