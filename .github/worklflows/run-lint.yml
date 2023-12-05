@@ -3,13 +3,13 @@ run-name:  ${{ github.actor }} pushed code to ${{ github.ref }} on ${{ github.re
 
 on:
   push:
-    branches:
-      - main
-      - feature/*
-  pull_request:
-    branches:
-      - main
-      - feature/*
+#    branches:
+#      - main
+#      - feature/*
+#  pull_request:
+#    branches:
+#      - main
+#      - feature/*
 
 jobs:
   lint:
@@ -29,3 +29,17 @@ jobs:
 
       - name: Run ESLint
         run: npm run lint
+
+#
+#        lint:
+#          runs-on:
+#            - self-hosted
+#            - runner-3
+#          container:
+#            image: 192.168.0.202:5000/learningsuite/base:${{github.sha}}
+#          needs: build-base-image
+#          steps:
+#            - uses: actions/checkout@v2
+#            - name: link node_modules locally
+#              run: ln -sf /base/node_modules ./node_modules
+#            - run: yarn nx run-many --target lint --all --parallel=16
